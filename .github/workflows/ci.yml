@@ -89,13 +89,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-playwright-
 
-      - name: Install Node.js for Playwright CLI
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
       - name: Install Playwright browsers
-        run: npx playwright@1.43.0 install --with-deps chromium
+        run: |
+          npm install -g @playwright/test@1.43.0
+          npx playwright install chromium
+          sudo npx playwright install-deps chromium
 
       - name: Compile framework
         run: mvn test-compile --no-transfer-progress
