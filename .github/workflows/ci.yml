@@ -153,3 +153,38 @@ jobs:
           echo "  Tags    : ${{ github.event.inputs.cucumber_tags || '@regression or @sanity' }}"
           echo "  Status  : ${{ job.status }}"
           echo "================================================="
+
+  publish-report:
+    name: Publish Allure Report
+    runs-on: ubuntu-latest
+    needs: test
+    if: always()
+
+    steps:
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Download Allure results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results-chromium
+          path: allure-results
+
+      - name: Generate Allure report
+        uses: simple-irobot/allure-report-action@v1
+        with:
+          allure_results: allure-results
+          allure_report: allure-report
+          gh_pages: .
+          allure_history: allure-history
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+          keep_files: true
