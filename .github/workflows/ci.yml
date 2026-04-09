@@ -76,20 +76,26 @@ jobs:
             ${{ runner.os }}-maven-
 
       # -----------------------------------------------------------------------
-      # Playwright manages its own browser binaries — no setup-chrome action
-      # needed. The CLI install command downloads Chromium, Firefox, and WebKit.
-      # Binaries are cached between runs to avoid repeated downloads.
+      # Playwright manages its own browser binaries. We use npx to install
+      # them directly rather than the Maven exec plugin, which cannot access
+      # test-scoped dependencies. Browsers are cached between runs to avoid
+      # repeated downloads — cache key is pinned to the Playwright version.
       # -----------------------------------------------------------------------
       - name: Cache Playwright browsers
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-playwright-1.43.0
           restore-keys: |
             ${{ runner.os }}-playwright-
 
+      - name: Install Node.js for Playwright CLI
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
       - name: Install Playwright browsers
-        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+        run: npx playwright@1.43.0 install --with-deps chromium
 
       - name: Compile framework
         run: mvn test-compile --no-transfer-progress
