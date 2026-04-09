@@ -37,3 +37,17 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Framework Specific ###
+allure-results/
+allure-report/
+screenshots/
+*.env
+.env
+test-output/
+
+# Allure CLI (downloaded locally by IDE/toolchain, not source code)
+.allure/
+
+# Copilot / IDE local state
+copilotDiffState.xml

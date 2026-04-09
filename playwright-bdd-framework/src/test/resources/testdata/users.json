@@ -1,0 +1,24 @@
+{
+  "users": {
+    "standard": {
+      "username": "wNGTAVxN6c23IBsXpOHwZw==",
+      "password": "VAQRiE3js+VD+nctUnk7Gw==",
+      "role": "standard"
+    },
+    "locked": {
+      "username": "0U/lfUttf4Xa7lkWSe3yhg==",
+      "password": "VAQRiE3js+VD+nctUnk7Gw==",
+      "role": "locked"
+    },
+    "problem": {
+      "username": "JL1+YvbEwPZ9IKsBrSyybA==",
+      "password": "VAQRiE3js+VD+nctUnk7Gw==",
+      "role": "problem"
+    },
+    "performance_glitch": {
+      "username": "gw6zF7TcKWI//uwcogay2/ofNX0vUCaLmzFRvQGk5Lk=",
+      "password": "VAQRiE3js+VD+nctUnk7Gw==",
+      "role": "performance_glitch"
+    }
+  }
+}

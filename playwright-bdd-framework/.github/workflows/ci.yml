@@ -1,0 +1,151 @@
+# =============================================================================
+# GitHub Actions CI Pipeline — Playwright BDD Framework
+# =============================================================================
+#
+# Triggers: push/PR to main and develop, daily 6am UTC, manual dispatch.
+#
+# SECRETS REQUIRED:
+#   TEST_DATA_SECRET_KEY — AES encryption key for test data decryption.
+#   Add in: Repository → Settings → Secrets and variables → Actions
+# =============================================================================
+
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      cucumber_tags:
+        description: 'Cucumber tag expression (e.g. @sanity, @regression, @TC001)'
+        required: false
+        default: '@regression or @sanity'
+      browser:
+        description: 'Browser to run tests against'
+        required: false
+        default: 'chromium'
+        type: choice
+        options:
+          - chromium
+          - firefox
+          - webkit
+
+env:
+  JAVA_VERSION: '17'
+  JAVA_DISTRIBUTION: 'temurin'
+  MAVEN_OPTS: '-Xmx1024m'
+
+jobs:
+  test:
+    name: Run Cucumber Test Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium]
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          cache: maven
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # -----------------------------------------------------------------------
+      # Playwright manages its own browser binaries — no setup-chrome action
+      # needed. The CLI install command downloads Chromium, Firefox, and WebKit.
+      # Binaries are cached between runs to avoid repeated downloads.
+      # -----------------------------------------------------------------------
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright browsers
+        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+
+      - name: Compile framework
+        run: mvn test-compile --no-transfer-progress
+
+      - name: Run test suite
+        env:
+          TEST_DATA_SECRET_KEY: ${{ secrets.TEST_DATA_SECRET_KEY }}
+        run: |
+          mvn test \
+            --no-transfer-progress \
+            -Dcucumber.filter.tags="${{ github.event.inputs.cucumber_tags || '@regression or @sanity' }}" \
+            -Dbrowser=${{ matrix.browser }} \
+            -Dheadless=true \
+            -Dallure.results.directory=target/allure-results
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-${{ matrix.browser }}
+          path: target/allure-results
+          retention-days: 30
+
+      - name: Upload Cucumber reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-reports-${{ matrix.browser }}
+          path: target/cucumber-reports
+          retention-days: 30
+
+      - name: Upload Playwright traces
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-traces-${{ matrix.browser }}
+          path: target/traces
+          retention-days: 7
+
+      - name: Upload failure screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-screenshots-${{ matrix.browser }}
+          path: target/screenshots
+          retention-days: 7
+
+      - name: Output pipeline summary
+        if: always()
+        run: |
+          echo "================================================="
+          echo "  CI PIPELINE COMPLETE"
+          echo "================================================="
+          echo "  Branch  : ${{ github.ref_name }}"
+          echo "  Commit  : ${{ github.sha }}"
+          echo "  Browser : ${{ matrix.browser }}"
+          echo "  Tags    : ${{ github.event.inputs.cucumber_tags || '@regression or @sanity' }}"
+          echo "  Status  : ${{ job.status }}"
+          echo "================================================="

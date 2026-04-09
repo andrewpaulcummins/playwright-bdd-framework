@@ -1,5 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.andrewcummins.framework</groupId>
@@ -7,19 +11,307 @@
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>playwright-bdd-framework</name>
-  <url>http://maven.apache.org</url>
+  <name>Playwright BDD Framework</name>
+  <description>
+    Enterprise-grade BDD test automation framework built with
+    Playwright for Java, Cucumber 7, JUnit 5, and PicoContainer.
+    Designed for UI, API, and Performance testing against public
+    demo applications.
+  </description>
 
   <properties>
+    <java.version>17</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Playwright — manages its own browser binaries,
+         no WebDriverManager needed -->
+    <playwright.version>1.43.0</playwright.version>
+
+    <!-- Cucumber — same versions as Framework 1 for consistency -->
+    <cucumber.version>7.15.0</cucumber.version>
+
+    <!-- JUnit 5 — replaces TestNG as the test runner -->
+    <junit.version>5.10.2</junit.version>
+
+    <!-- PicoContainer — identical to Framework 1 -->
+    <picocontainer.version>2.15</picocontainer.version>
+
+    <!-- REST Assured — identical to Framework 1 -->
+    <restassured.version>5.4.0</restassured.version>
+
+    <!-- Jackson — identical to Framework 1 -->
+    <jackson.version>2.16.1</jackson.version>
+
+    <!-- Allure — identical to Framework 1 -->
+    <allure.version>2.25.0</allure.version>
+    <allure.maven.version>2.12.0</allure.maven.version>
+
+    <!-- AspectJ — required by Allure -->
+    <aspectj.version>1.9.25.1</aspectj.version>
+
+    <!-- Gatling — identical to Framework 1 -->
+    <gatling.version>3.10.3</gatling.version>
+    <gatling.maven.version>4.9.6</gatling.maven.version>
+
+    <!-- Maven plugins -->
+    <surefire.version>3.2.5</surefire.version>
+    <maven.compiler.plugin.version>3.12.1</maven.compiler.plugin.version>
+
   </properties>
 
   <dependencies>
+
+    <!-- ========================================================
+         PLAYWRIGHT
+         Microsoft's browser automation library for Java.
+         Manages its own browser binaries (Chromium, Firefox,
+         WebKit) — no separate driver management needed.
+         ======================================================== -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <groupId>com.microsoft.playwright</groupId>
+      <artifactId>playwright</artifactId>
+      <version>${playwright.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- ========================================================
+         CUCUMBER
+         Same three modules as Framework 1 — core engine,
+         JUnit 5 integration, and PicoContainer DI.
+         Note: cucumber-junit5 replaces cucumber-testng.
+         ======================================================== -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit-platform-engine</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-picocontainer</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- ========================================================
+         JUNIT 5
+         Replaces TestNG as the test runner. Three modules needed:
+         - junit-jupiter-api    : annotations and assertions
+         - junit-jupiter-engine : test execution engine
+         - junit-platform-suite : suite runner for Cucumber
+         ======================================================== -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite</artifactId>
+      <version>1.10.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- ========================================================
+         PICOCONTAINER — identical to Framework 1
+         ======================================================== -->
+    <dependency>
+      <groupId>org.picocontainer</groupId>
+      <artifactId>picocontainer</artifactId>
+      <version>${picocontainer.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- ========================================================
+         REST ASSURED — identical to Framework 1
+         ======================================================== -->
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>${restassured.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>json-schema-validator</artifactId>
+      <version>${restassured.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- ========================================================
+         JACKSON — identical to Framework 1
+         ======================================================== -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- ========================================================
+         ALLURE REPORTING
+         Uses allure-cucumber7-jvm — identical to Framework 1.
+         allure-junit5 replaces allure-testng.
+         ======================================================== -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-junit5</artifactId>
+      <version>${allure.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber7-jvm</artifactId>
+      <version>${allure.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- ========================================================
+         ASPECTJ — required by Allure
+         ======================================================== -->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectj.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+
   </dependencies>
+
+  <build>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </testResource>
+    </testResources>
+
+    <plugins>
+
+      <!-- Maven Compiler Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.plugin.version}</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+
+      <!-- ====================================================
+           MAVEN SUREFIRE PLUGIN
+           Configured for JUnit 5 Platform — different from
+           Framework 1 which used TestNG provider.
+           ==================================================== -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire.version}</version>
+        <configuration>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
+          <systemPropertyVariables>
+            <allure.results.directory>
+              ${project.build.directory}/allure-results
+            </allure.results.directory>
+            <!-- Cucumber tag override from CI -->
+            <cucumber.filter.tags>
+              ${cucumber.filter.tags}
+            </cucumber.filter.tags>
+          </systemPropertyVariables>
+          <includes>
+            <include>**/RunCukesTest.java</include>
+          </includes>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <!-- Allure Maven Plugin — identical to Framework 1 -->
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>${allure.maven.version}</version>
+        <configuration>
+          <reportVersion>${allure.version}</reportVersion>
+          <resultsDirectory>
+            ${project.build.directory}/allure-results
+          </resultsDirectory>
+          <reportDirectory>
+            ${project.build.directory}/allure-report
+          </reportDirectory>
+        </configuration>
+      </plugin>
+
+      <!-- JavaDoc Plugin — identical to Framework 1 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.6.3</version>
+        <configuration>
+          <show>public</show>
+          <nohelp>true</nohelp>
+          <charset>UTF-8</charset>
+          <encoding>UTF-8</encoding>
+          <docencoding>UTF-8</docencoding>
+          <source>${java.version}</source>
+        </configuration>
+      </plugin>
+
+      <!-- Gatling Plugin — identical to Framework 1 -->
+      <plugin>
+        <groupId>io.gatling</groupId>
+        <artifactId>gatling-maven-plugin</artifactId>
+        <version>${gatling.maven.version}</version>
+        <configuration>
+          <simulationClass>
+            performance.LoadSimulation
+          </simulationClass>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>${allure.maven.version}</version>
+      </plugin>
+    </plugins>
+  </reporting>
+
 </project>
