@@ -34,6 +34,10 @@ public class ConfigReader {
      * @return the browser name in lowercase
      */
     public String getBrowser() {
+        String systemProperty = System.getProperty("browser");
+        if (systemProperty != null && !systemProperty.trim().isEmpty()) {
+            return systemProperty.toLowerCase().trim();
+        }
         return getRequiredProperty("browser").toLowerCase().trim();
     }
 
@@ -43,6 +47,11 @@ public class ConfigReader {
      * @return {@code true} if headless mode is enabled
      */
     public boolean isHeadless() {
+        // Allow CI/CD to override via Maven system property -Dheadless=true
+        String systemProperty = System.getProperty("headless");
+        if (systemProperty != null && !systemProperty.trim().isEmpty()) {
+            return Boolean.parseBoolean(systemProperty.trim());
+        }
         return Boolean.parseBoolean(getRequiredProperty("headless"));
     }
 
