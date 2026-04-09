@@ -112,6 +112,22 @@ public class ConfigReader {
     }
 
     /**
+     * Returns the ReqRes API key used for the {@code x-api-key} request header.
+     *
+     * <p>Can be overridden at runtime via {@code -Dapi.key=<value>} (e.g. from a
+     * CI secret) without modifying {@code config.properties}.</p>
+     *
+     * @return the API key string
+     */
+    public String getApiKey() {
+        String systemProperty = System.getProperty("api.key");
+        if (systemProperty != null && !systemProperty.trim().isEmpty()) {
+            return systemProperty.trim();
+        }
+        return getRequiredProperty("api.key");
+    }
+
+    /**
      * Returns the classpath-relative path to the encrypted test data JSON file.
      *
      * @return the test data file path string

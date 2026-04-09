@@ -60,23 +60,23 @@ public class Hooks {
      */
     @Before(order = 1)
     public void setUp(Scenario scenario) {
+        boolean isApiTest = scenario.getSourceTagNames().contains("@api");
+
+        if (!isApiTest) {
+            Playwright playwright = browserFactory.createPlaywright();
+            Browser browser = browserFactory.createBrowser(playwright);
+            BrowserContext browserContext = browserFactory.createBrowserContext(browser);
+            Page page = browserFactory.createPage(browserContext);
+
+            context.setPlaywright(playwright);
+            context.setBrowser(browser);
+            context.setBrowserContext(browserContext);
+            context.setPage(page);
+
+            browserFactory.startTracing(browserContext);
+        }
+
         System.out.println("[Hooks] Starting scenario: " + scenario.getName());
-        System.out.println("[Hooks] Tags: " + scenario.getSourceTagNames());
-
-        Playwright playwright = browserFactory.createPlaywright();
-        Browser browser = browserFactory.createBrowser(playwright);
-        BrowserContext browserContext = browserFactory.createBrowserContext(browser);
-        Page page = browserFactory.createPage(browserContext);
-
-        context.setPlaywright(playwright);
-        context.setBrowser(browser);
-        context.setBrowserContext(browserContext);
-        context.setPage(page);
-
-        browserFactory.startTracing(browserContext);
-
-        System.out.println("[Hooks] Browser initialised: " +
-                context.getConfigReader().getBrowser().toUpperCase());
     }
 
     /**
@@ -89,17 +89,16 @@ public class Hooks {
      */
     @After(order = 1)
     public void tearDown(Scenario scenario) {
-        System.out.println("[Hooks] Scenario '" + scenario.getName() +
-                "' finished with status: " + scenario.getStatus());
-
         boolean scenarioFailed = scenario.isFailed();
 
-        if (scenarioFailed) {
+        if (context.isPageInitialised() && scenarioFailed) {
             captureScreenshot(scenario);
         }
 
-        stopTracing(scenarioFailed, scenario.getName());
-        closePlaywright();
+        if (context.isBrowserContextInitialised()) {
+            stopTracing(scenarioFailed, scenario.getName());
+            closePlaywright();
+        }
     }
 
     /**
@@ -109,7 +108,7 @@ public class Hooks {
      */
     @AfterStep
     public void captureStepScreenshot(Scenario scenario) {
-        if (scenario.isFailed()) {
+        if (scenario.isFailed() && context.isPageInitialised()) {
             captureScreenshot(scenario);
         }
     }
@@ -159,7 +158,7 @@ public class Hooks {
      */
     private void closePlaywright() {
         try {
-            if (context.getBrowserContext() != null) {
+            if (context.isBrowserContextInitialised()) {
                 context.getBrowserContext().close();
                 System.out.println("[Hooks] BrowserContext closed.");
             }
@@ -168,7 +167,7 @@ public class Hooks {
         }
 
         try {
-            if (context.getBrowser() != null) {
+            if (context.isBrowserInitialised()) {
                 context.getBrowser().close();
                 System.out.println("[Hooks] Browser closed.");
             }
@@ -177,7 +176,7 @@ public class Hooks {
         }
 
         try {
-            if (context.getPlaywright() != null) {
+            if (context.isPlaywrightInitialised()) {
                 context.getPlaywright().close();
                 System.out.println("[Hooks] Playwright closed.");
             }

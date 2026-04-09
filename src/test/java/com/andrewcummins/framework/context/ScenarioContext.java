@@ -8,6 +8,8 @@ import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 
+import io.restassured.response.Response;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -273,5 +275,62 @@ public class ScenarioContext {
      */
     public boolean hasData(String key) {
         return scenarioData.containsKey(key);
+    }
+
+    // =========================================================================
+    // PLAYWRIGHT INITIALISATION STATE CHECKS
+    // =========================================================================
+
+    /**
+     * Returns {@code true} if a {@code Page} has been initialised for this scenario.
+     *
+     * <p>Use this instead of {@link #getPage()} when you only need to know whether
+     * a browser was launched (e.g. in teardown hooks that must support API-only scenarios).</p>
+     *
+     * @return {@code true} if {@code page} is not null
+     */
+    public boolean isPageInitialised() {
+        return page != null;
+    }
+
+    /**
+     * Returns {@code true} if a {@code BrowserContext} has been initialised for this scenario.
+     *
+     * @return {@code true} if {@code browserContext} is not null
+     */
+    public boolean isBrowserContextInitialised() {
+        return browserContext != null;
+    }
+
+    /**
+     * Returns {@code true} if a {@code Browser} has been initialised for this scenario.
+     *
+     * @return {@code true} if {@code browser} is not null
+     */
+    public boolean isBrowserInitialised() {
+        return browser != null;
+    }
+
+    /**
+     * Returns {@code true} if a {@code Playwright} instance has been initialised for this scenario.
+     *
+     * @return {@code true} if {@code playwright} is not null
+     */
+    public boolean isPlaywrightInitialised() {
+        return playwright != null;
+    }
+
+    // =========================================================================
+    // API RESPONSE STATE
+    // =========================================================================
+
+    private Response lastResponse;
+
+    public Response getLastResponse() {
+        return lastResponse;
+    }
+
+    public void setLastResponse(Response response) {
+        this.lastResponse = response;
     }
 }
