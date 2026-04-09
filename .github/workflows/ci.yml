@@ -85,13 +85,13 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-1.43.0
+          key: ${{ runner.os }}-playwright-1.47.0
           restore-keys: |
             ${{ runner.os }}-playwright-
 
       - name: Install Playwright browsers
         run: |
-          npm install -g @playwright/test@1.43.0
+          npm install -g @playwright/test@1.47.0
           npx playwright install chromium
           sudo npx playwright install-deps chromium
 

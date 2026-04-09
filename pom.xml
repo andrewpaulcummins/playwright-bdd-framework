@@ -27,7 +27,7 @@
 
     <!-- Playwright — manages its own browser binaries,
          no WebDriverManager needed -->
-    <playwright.version>1.43.0</playwright.version>
+    <playwright.version>1.47.0</playwright.version>
 
     <!-- Cucumber — same versions as Framework 1 for consistency -->
     <cucumber.version>7.15.0</cucumber.version>
