@@ -1,0 +1,12 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","295","Retrieve a single user by ID successfully","","Fri Apr 10 07:25:54 UTC 2026","passed","Fri Apr 10 07:25:55 UTC 2026","","ReqRes API — Users and Authentication","Retrieve a single user by ID successfully",""
+"  As a user of the SauceDemo application
+  I want to be able to log in with valid credentials
+  So that I can access the product inventory","828","Locked out user cannot log in","","Fri Apr 10 07:25:58 UTC 2026","passed","Fri Apr 10 07:25:59 UTC 2026","","Login functionality","Locked out user cannot log in",""
+"","302","Create a new user successfully","","Fri Apr 10 07:25:55 UTC 2026","passed","Fri Apr 10 07:25:55 UTC 2026","","ReqRes API — Users and Authentication","Create a new user successfully",""
+"","153","Successful login returns a token","","Fri Apr 10 07:25:55 UTC 2026","passed","Fri Apr 10 07:25:55 UTC 2026","","ReqRes API — Users and Authentication","Successful login returns a token",""
+"","3817","Retrieve first page of users successfully","","Fri Apr 10 07:25:50 UTC 2026","passed","Fri Apr 10 07:25:54 UTC 2026","","ReqRes API — Users and Authentication","Retrieve first page of users successfully",""
+"  As a user of the SauceDemo application
+  I want to be able to log in with valid credentials
+  So that I can access the product inventory","2655","Standard user can log in successfully","","Fri Apr 10 07:25:55 UTC 2026","passed","Fri Apr 10 07:25:58 UTC 2026","","Login functionality","Standard user can log in successfully",""
+"","210","Delete a user successfully","","Fri Apr 10 07:25:55 UTC 2026","passed","Fri Apr 10 07:25:55 UTC 2026","","ReqRes API — Users and Authentication","Delete a user successfully",""
