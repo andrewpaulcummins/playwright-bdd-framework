@@ -1,0 +1,8 @@
+"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
+"0","","0","ReqRes API — Users and Authentication","1","0","Create a new user successfully","0"
+"0","","0","ReqRes API — Users and Authentication","1","0","Retrieve first page of users successfully","0"
+"0","","0","Login functionality","1","0","Locked out user cannot log in","0"
+"0","","0","ReqRes API — Users and Authentication","1","0","Delete a user successfully","0"
+"0","","0","ReqRes API — Users and Authentication","1","0","Retrieve a single user by ID successfully","0"
+"0","","0","Login functionality","1","0","Standard user can log in successfully","0"
+"0","","0","ReqRes API — Users and Authentication","1","0","Successful login returns a token","0"
