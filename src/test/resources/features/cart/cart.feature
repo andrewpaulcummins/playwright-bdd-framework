@@ -27,7 +27,7 @@ Feature: Cart functionality
     When the user adds "Sauce Labs Backpack" to the cart
     And the user navigates to the cart
     Then the cart page should be displayed
-    And the cart should contain 1 item(s)
+    And the cart should contain 1 items
     And the cart should contain "Sauce Labs Backpack"
 
   @TC030 @regression
@@ -35,7 +35,7 @@ Feature: Cart functionality
     When the user adds "Sauce Labs Backpack" to the cart
     And the user adds "Sauce Labs Bike Light" to the cart
     And the user navigates to the cart
-    Then the cart should contain 2 item(s)
+    Then the cart should contain 2 items
     And the cart should contain "Sauce Labs Backpack"
     And the cart should contain "Sauce Labs Bike Light"
 
@@ -44,7 +44,7 @@ Feature: Cart functionality
     When the user adds "Sauce Labs Backpack" to the cart
     And the user navigates to the cart
     And the user removes "Sauce Labs Backpack" from the cart
-    Then the cart should contain 0 item(s)
+    Then the cart should contain 0 items
     And the cart should not contain "Sauce Labs Backpack"
 
   @TC032 @regression

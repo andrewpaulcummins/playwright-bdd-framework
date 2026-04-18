@@ -93,7 +93,7 @@ public class CartSteps {
      * @throws AssertionError if the actual item count does not match the expected count
      * @see CartPage#getCartItemCount()
      */
-    @Then("the cart should contain {int} item(s)")
+    @Then("the cart should contain {int} items")
     public void theCartShouldContainItems(int expectedCount) {
         CartPage cartPage = new CartPage(context);
         assertEquals(expectedCount, cartPage.getCartItemCount(),
