@@ -51,7 +51,7 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 )
 @ConfigurationParameter(
         key = FILTER_TAGS_PROPERTY_NAME,
-        value = "@regression and @sanity"
+        value = "@regression"
 )
 @ConfigurationParameter(
         key = PLUGIN_PROPERTY_NAME,
