@@ -1,0 +1,99 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"  As a logged in user with items in my cart
+  I want to complete the checkout process
+  So that I can place an order","1534","User can complete a full checkout","","Sat Apr 25 07:13:44 UTC 2026","passed","Sat Apr 25 07:13:46 UTC 2026","","Checkout functionality","User can complete a full checkout",""
+"","327","Successful registration returns an ID and token","","Sat Apr 25 07:13:33 UTC 2026","passed","Sat Apr 25 07:13:33 UTC 2026","","ReqRes API — Users and Authentication","Successful registration returns an ID and token",""
+"","279","Retrieve a single user by ID successfully","","Sat Apr 25 07:13:30 UTC 2026","passed","Sat Apr 25 07:13:31 UTC 2026","","ReqRes API — Users and Authentication","Retrieve a single user by ID successfully",""
+"  As a logged in user
+  I want to browse and interact with the product inventory
+  So that I can find and add products to my cart","1246","Products can be sorted by price low to high","","Sat Apr 25 07:13:57 UTC 2026","passed","Sat Apr 25 07:13:58 UTC 2026","","Inventory page functionality","Products can be sorted by price low to high",""
+"","317","Login without password returns 400 with error message","","Sat Apr 25 07:13:32 UTC 2026","passed","Sat Apr 25 07:13:33 UTC 2026","","ReqRes API — Users and Authentication","Login without password returns 400 with error message",""
+"  As a user of the SauceDemo application
+  I want to be able to log in with valid credentials
+  So that I can access the product inventory","1296","Standard user lands on inventory page after login","","Sat Apr 25 07:14:03 UTC 2026","passed","Sat Apr 25 07:14:04 UTC 2026","","Login functionality","Standard user lands on inventory page after login",""
+"","328","Delete a user successfully","","Sat Apr 25 07:13:32 UTC 2026","passed","Sat Apr 25 07:13:32 UTC 2026","","ReqRes API — Users and Authentication","Delete a user successfully",""
+"  As a logged in user with items in my cart
+  I want to complete the checkout process
+  So that I can place an order","1565","User can navigate back to products after completing order","","Sat Apr 25 07:13:51 UTC 2026","passed","Sat Apr 25 07:13:53 UTC 2026","","Checkout functionality","User can navigate back to products after completing order",""
+"  As a logged in user with items in my cart
+  I want to complete the checkout process
+  So that I can place an order","1405","Checkout shows error when first name is missing","","Sat Apr 25 07:13:46 UTC 2026","passed","Sat Apr 25 07:13:47 UTC 2026","","Checkout functionality","Checkout shows error when first name is missing",""
+"  As a logged in user
+  I want to browse and interact with the product inventory
+  So that I can find and add products to my cart","1245","Products can be sorted alphabetically ascending","","Sat Apr 25 07:13:54 UTC 2026","passed","Sat Apr 25 07:13:55 UTC 2026","","Inventory page functionality","Products can be sorted alphabetically ascending",""
+"  As a logged in user
+  I want to manage items in my shopping cart
+  So that I can review and proceed to purchase","1346","User can continue shopping from cart","","Sat Apr 25 07:13:41 UTC 2026","passed","Sat Apr 25 07:13:43 UTC 2026","","Cart functionality","User can continue shopping from cart",""
+"  As a user of the SauceDemo application
+  I want to be able to log in with valid credentials
+  So that I can access the product inventory","6236","Performance glitch user can log in successfully","","Sat Apr 25 07:14:09 UTC 2026","passed","Sat Apr 25 07:14:15 UTC 2026","","Login functionality","Performance glitch user can log in successfully",""
+"","370","Create a new user successfully","","Sat Apr 25 07:13:31 UTC 2026","passed","Sat Apr 25 07:13:31 UTC 2026","","ReqRes API — Users and Authentication","Create a new user successfully",""
+"  As a logged in user with items in my cart
+  I want to complete the checkout process
+  So that I can place an order","1335","Checkout page is displayed after proceeding from cart","","Sat Apr 25 07:13:43 UTC 2026","passed","Sat Apr 25 07:13:44 UTC 2026","","Checkout functionality","Checkout page is displayed after proceeding from cart",""
+"  As a logged in user
+  I want to manage items in my shopping cart
+  So that I can review and proceed to purchase","1374","User can remove a product from the cart","","Sat Apr 25 07:13:39 UTC 2026","passed","Sat Apr 25 07:13:40 UTC 2026","","Cart functionality","User can remove a product from the cart",""
+"  As a user of the SauceDemo application
+  I want to be able to log in with valid credentials
+  So that I can access the product inventory","1041","Error message is displayed when both fields are empty","","Sat Apr 25 07:14:15 UTC 2026","passed","Sat Apr 25 07:14:16 UTC 2026","","Login functionality","Error message is displayed when both fields are empty",""
+"  As a user of the SauceDemo application
+  I want to be able to log in with valid credentials
+  So that I can access the product inventory","1200","Locked out user cannot log in","","Sat Apr 25 07:14:04 UTC 2026","passed","Sat Apr 25 07:14:06 UTC 2026","","Login functionality","Locked out user cannot log in",""
+"","359","Create a user with different attributes","","Sat Apr 25 07:13:31 UTC 2026","passed","Sat Apr 25 07:13:32 UTC 2026","","ReqRes API — Users and Authentication","Create a user with different attributes",""
+"  As a logged in user
+  I want to browse and interact with the product inventory
+  So that I can find and add products to my cart","1235","Adding a product updates the cart badge","","Sat Apr 25 07:13:59 UTC 2026","passed","Sat Apr 25 07:14:00 UTC 2026","","Inventory page functionality","Adding a product updates the cart badge",""
+"  As a logged in user with items in my cart
+  I want to complete the checkout process
+  So that I can place an order","1475","Checkout shows error when last name is missing","","Sat Apr 25 07:13:47 UTC 2026","passed","Sat Apr 25 07:13:48 UTC 2026","","Checkout functionality","Checkout shows error when last name is missing",""
+"  As a user of the SauceDemo application
+  I want to be able to log in with valid credentials
+  So that I can access the product inventory","1203","User cannot log in with empty password","","Sat Apr 25 07:14:07 UTC 2026","passed","Sat Apr 25 07:14:08 UTC 2026","","Login functionality","User cannot log in with empty password",""
+"  As a user of the SauceDemo application
+  I want to be able to log in with valid credentials
+  So that I can access the product inventory","1096","User cannot log in with empty username","","Sat Apr 25 07:14:06 UTC 2026","passed","Sat Apr 25 07:14:07 UTC 2026","","Login functionality","User cannot log in with empty username",""
+"","3408","Retrieve first page of users successfully","","Sat Apr 25 07:13:26 UTC 2026","passed","Sat Apr 25 07:13:30 UTC 2026","","ReqRes API — Users and Authentication","Retrieve first page of users successfully",""
+"  As a logged in user
+  I want to browse and interact with the product inventory
+  So that I can find and add products to my cart","1237","Products can be sorted by price high to low","","Sat Apr 25 07:13:58 UTC 2026","passed","Sat Apr 25 07:13:59 UTC 2026","","Inventory page functionality","Products can be sorted by price high to low",""
+"  As a logged in user
+  I want to browse and interact with the product inventory
+  So that I can find and add products to my cart","1227","Inventory page displays correct number of products","","Sat Apr 25 07:13:53 UTC 2026","passed","Sat Apr 25 07:13:54 UTC 2026","","Inventory page functionality","Inventory page displays correct number of products",""
+"  As a user of the SauceDemo application
+  I want to be able to log in with valid credentials
+  So that I can access the product inventory","1281","Standard user can log in successfully","","Sat Apr 25 07:14:02 UTC 2026","passed","Sat Apr 25 07:14:03 UTC 2026","","Login functionality","Standard user can log in successfully",""
+"  As a logged in user
+  I want to manage items in my shopping cart
+  So that I can review and proceed to purchase","1310","Added product appears in cart","","Sat Apr 25 07:13:36 UTC 2026","passed","Sat Apr 25 07:13:37 UTC 2026","","Cart functionality","Added product appears in cart",""
+"","328","Request a user that does not exist returns 404","","Sat Apr 25 07:13:31 UTC 2026","passed","Sat Apr 25 07:13:31 UTC 2026","","ReqRes API — Users and Authentication","Request a user that does not exist returns 404",""
+"","397","Retrieve second page of users successfully","","Sat Apr 25 07:13:30 UTC 2026","passed","Sat Apr 25 07:13:30 UTC 2026","","ReqRes API — Users and Authentication","Retrieve second page of users successfully",""
+"","243","Update an existing user successfully","","Sat Apr 25 07:13:32 UTC 2026","passed","Sat Apr 25 07:13:32 UTC 2026","","ReqRes API — Users and Authentication","Update an existing user successfully",""
+"  As a logged in user
+  I want to manage items in my shopping cart
+  So that I can review and proceed to purchase","1270","Cart displays checkout button","","Sat Apr 25 07:13:40 UTC 2026","passed","Sat Apr 25 07:13:41 UTC 2026","","Cart functionality","Cart displays checkout button",""
+"  As a logged in user with items in my cart
+  I want to complete the checkout process
+  So that I can place an order","1458","Overview page displays correct order summary","","Sat Apr 25 07:13:50 UTC 2026","passed","Sat Apr 25 07:13:51 UTC 2026","","Checkout functionality","Overview page displays correct order summary",""
+"  As a logged in user
+  I want to browse and interact with the product inventory
+  So that I can find and add products to my cart","1246","Products can be sorted alphabetically descending","","Sat Apr 25 07:13:55 UTC 2026","passed","Sat Apr 25 07:13:57 UTC 2026","","Inventory page functionality","Products can be sorted alphabetically descending",""
+"  As a user of the SauceDemo application
+  I want to be able to log in with valid credentials
+  So that I can access the product inventory","1342","User can log in after correcting invalid credentials","","Sat Apr 25 07:14:16 UTC 2026","passed","Sat Apr 25 07:14:18 UTC 2026","","Login functionality","User can log in after correcting invalid credentials",""
+"  As a logged in user
+  I want to manage items in my shopping cart
+  So that I can review and proceed to purchase","1347","Multiple products appear in cart","","Sat Apr 25 07:13:37 UTC 2026","passed","Sat Apr 25 07:13:39 UTC 2026","","Cart functionality","Multiple products appear in cart",""
+"  As a user of the SauceDemo application
+  I want to be able to log in with valid credentials
+  So that I can access the product inventory","1263","Problem user can log in successfully","","Sat Apr 25 07:14:08 UTC 2026","passed","Sat Apr 25 07:14:09 UTC 2026","","Login functionality","Problem user can log in successfully",""
+"  As a logged in user
+  I want to browse and interact with the product inventory
+  So that I can find and add products to my cart","1355","Adding multiple products updates the cart badge count","","Sat Apr 25 07:14:00 UTC 2026","passed","Sat Apr 25 07:14:02 UTC 2026","","Inventory page functionality","Adding multiple products updates the cart badge count",""
+"  As a logged in user with items in my cart
+  I want to complete the checkout process
+  So that I can place an order","1438","Checkout shows error when postal code is missing","","Sat Apr 25 07:13:48 UTC 2026","passed","Sat Apr 25 07:13:50 UTC 2026","","Checkout functionality","Checkout shows error when postal code is missing",""
+"","213","Successful login returns a token","","Sat Apr 25 07:13:32 UTC 2026","passed","Sat Apr 25 07:13:32 UTC 2026","","ReqRes API — Users and Authentication","Successful login returns a token",""
+"  As a logged in user
+  I want to manage items in my shopping cart
+  So that I can review and proceed to purchase","2807","User can navigate to the cart","","Sat Apr 25 07:13:33 UTC 2026","passed","Sat Apr 25 07:13:36 UTC 2026","","Cart functionality","User can navigate to the cart",""
